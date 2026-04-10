@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smarter With AI - المحاضرة الأولى (الدفعة الرابعة)</title>
+    
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#2A1B54',
+                            teal: '#20857D',
+                            green: '#7BBA4E',
+                            light: '#F4F9F8',
+                            darkbg: '#050a09',
+                            darkcard: '#0c1715'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #20857D; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #7BBA4E; }
+        
+        .gradient-text {
+            background: linear-gradient(to left, #2A1B54, #20857D, #7BBA4E);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .dark .gradient-text {
+            background: linear-gradient(to left, #7BBA4E, #20857D, #60A5FA);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .accordion-content { transition: max-height 0.3s ease-out, padding 0.3s ease; }
+
+        .audio-player-glass {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .audio-player-glass {
+            background: rgba(12, 23, 21, 0.95);
+        }
+    </style>
+</head>
+<body class="bg-brand-light text-gray-800 dark:bg-brand-darkbg dark:text-gray-100 transition-colors duration-300 antialiased selection:bg-brand-green selection:text-white pb-36 md:pb-28">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-40 backdrop-blur-md bg-white/80 dark:bg-brand-darkbg/90 border-b-2 border-gray-200 dark:border-brand-teal/50 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo Area -->
+                <div class="flex items-center gap-2">
+                    <img src="https://i.postimg.cc/j512mZ0r/lwjw-image-hosting.jpg" alt="Smarter With AI Logo" class="w-12 h-12 rounded-xl object-contain shadow-sm bg-white border-2 border-brand-teal/30 dark:border-brand-teal">
+                    <span class="font-bold text-xl tracking-tight text-brand-dark dark:text-white">Smarter With <span class="text-brand-green">AI</span></span>
+                </div>
+                <!-- Theme Toggle -->
+                <button id="themeToggle" class="p-2 rounded-full hover:bg-brand-teal/10 dark:hover:bg-brand-teal/20 transition">
+                    <i id="themeIcon" class="fa-solid fa-moon text-xl text-brand-teal dark:text-brand-green"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header / Hero -->
+    <header class="max-w-4xl mx-auto mt-10 px-4 text-center">
+        <div class="inline-block px-4 py-1 rounded-full bg-brand-teal/10 text-brand-teal dark:bg-brand-teal/20 dark:text-brand-teal text-sm font-semibold mb-4">
+            الأسبوع الأول - الدفعة الرابعة
+        </div>
+        <h1 class="text-3xl md:text-5xl font-extrabold mb-4 gradient-text">دليلك السحري لدخول عالم الذكاء الاصطناعي</h1>
+        <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed mb-4 font-bold">
+            من "مستخدم تايه" لـ "مدير شاطر"!
+        </p>
+        <p class="text-md text-gray-600 dark:text-gray-300 leading-relaxed">
+            هل جربت مرة تسأل الذكاء الاصطناعي سؤال ولقيته بيرد عليك بإجابة تحس إنها "روبوتية" ومملة جداً؟ أو بتسمع مصطلحات زي (توكن، نافذة السياق، وكلاء أذكياء) وبتحس إن الكلام ده معقد ومش بتاعك؟ المحاضرة دي مش مجرد مقدمة، دي "الفرشة" والأساس اللي هنبني عليه كل شغلنا. إحنا مش جايين ندوس على زراير، إحنا جايين نفهم "العقلية". جهز كوباية الشاي، ويلا بينا نغوص في التفاصيل!
+        </p>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 py-12 space-y-12">
+
+        <!-- 1. منطقة التعلم (Learning Zone) -->
+        <section id="learning-zone" class="scroll-mt-24 bg-white dark:bg-brand-darkcard border-2 border-gray-200 dark:border-brand-teal/60 rounded-3xl p-6 md:p-8 shadow-md">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="p-3 bg-brand-teal/10 dark:bg-brand-teal/20 text-brand-teal dark:text-brand-green rounded-lg border border-brand-teal/30">
+                    <i class="fa-solid fa-brain text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold border-b-2 border-brand-green pb-2 inline-block dark:text-white">منطقة التعلم (Learning Zone)</h2>
+            </div>
+
+            <!-- روابط الاستماع والمرفقات -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <div class="bg-gray-50 dark:bg-[#070e0c] rounded-2xl shadow-sm border border-brand-teal/40 dark:border-brand-teal/60 p-4 flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-full bg-brand-teal text-white flex items-center justify-center shadow-lg shrink-0 border border-white/20">
+                        <i class="fa-solid fa-music animate-pulse"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="font-bold text-sm text-brand-dark dark:text-white mb-0.5">الملخص الصوتي</div>
+                        <p class="text-xs text-gray-500 dark:text-gray-300">شغله من أسفل الشاشة</p>
+                    </div>
+                </div>
+
+                <a href="https://t.me/c/3331953900/6/78" target="_blank" class="bg-gray-50 dark:bg-[#070e0c] rounded-2xl shadow-sm border border-gray-300 dark:border-brand-teal/60 p-4 flex items-center gap-3 hover:shadow-md hover:border-brand-green dark:hover:border-brand-green transition group">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-r from-brand-teal to-brand-green text-white flex items-center justify-center group-hover:scale-105 transition shadow-lg shrink-0 border border-white/20">
+                        <i class="fa-solid fa-play"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="font-bold text-sm text-brand-dark dark:text-white mb-0.5">المحاضرة كاملة</div>
+                        <p class="text-xs text-gray-500 dark:text-gray-300">شاهد الفيديو (تليجرام)</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-gray-400 dark:text-brand-green text-xs"></i>
+                </a>
+
+                <a href="https://notebooklm.google.com/notebook/7b7f75b1-77f6-4363-ada6-84c730d6bfc7" target="_blank" class="bg-gray-50 dark:bg-[#070e0c] rounded-2xl shadow-sm border border-gray-300 dark:border-brand-teal/60 p-4 flex items-center gap-3 hover:shadow-md hover:border-brand-green dark:hover:border-brand-green transition group">
+                    <div class="w-10 h-10 rounded-full bg-purple-500 text-white flex items-center justify-center group-hover:scale-105 transition shadow-lg shrink-0 border border-white/20">
+                        <i class="fa-solid fa-book-open-reader"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="font-bold text-sm text-brand-dark dark:text-white mb-0.5">نوت بوك الدبلومة</div>
+                        <p class="text-xs text-gray-500 dark:text-gray-300">NotebookLM</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-gray-400 dark:text-brand-green text-xs"></i>
+                </a>
+
+                <a href="https://drive.google.com/drive/folders/1eQXokQwEIKz42AgGuIDFHZoB_xx238ot?usp=sharing" target="_blank" class="bg-gray-50 dark:bg-[#070e0c] rounded-2xl shadow-sm border border-gray-300 dark:border-brand-teal/60 p-4 flex items-center gap-3 hover:shadow-md hover:border-brand-green dark:hover:border-brand-green transition group">
+                    <div class="w-10 h-10 rounded-full bg-brand-dark text-white flex items-center justify-center group-hover:scale-105 transition shadow-lg shrink-0 border border-white/20">
+                        <i class="fa-brands fa-google-drive"></i>
+                    </div>
+                    <div class="flex-1">
+                        <div class="font-bold text-sm text-brand-dark dark:text-white mb-0.5">المرفقات</div>
+                        <p class="text-xs text-gray-500 dark:text-gray-300">ملفات الدرايف</p>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-gray-400 dark:text-brand-green text-xs"></i>
+                </a>
+            </div>
+
+            <!-- المحتوى المقروء -->
+            <div class="prose prose-lg dark:prose-invert max-w-none mt-4 text-gray-800 dark:text-gray-200">
+                
+                <h3 class="text-xl font-bold text-brand-dark dark:text-white mt-8 mb-4 flex items-center gap-2">
+                    <span class="text-brand-green">1.</span> يعني إيه ذكاء اصطناعي توليدي؟
+                </h3>
+                <p>الذكاء الاصطناعي القديم كان مجرد "تحليل بيانات" زي خوارزميات اليوتيوب. لكن "التوليدي" بياخد منك مدخلات (Prompt) وبيخلق مخرجات جديدة من الصفر.</p>
+                <p>عشان تفهمه صح، لازم تعرف إنه بيتعامل مع البيانات والنصوص عن طريق تقسيمها لوحدات اسمها <strong>توكن (Token)</strong> (والتوكن يعادل حرف أو كلمة تقريباً). كل نموذج ليه سعة (ليمت). مثلاً Gemini يقدر يستوعب لحد مليون توكن (يعني ترفعله كتاب 1500 صفحة مره واحده)، بينما ChatGPT سعته أقل. ولازم تعرف إن النموذج ليه سعة في القراءة وسعة في "الرد"، فلو طلبت منه يلخص كتاب كامل في رد واحد، هيختزل الكلام. الأذكى إنك تقوله: "جاوبني على أجزاء".</p>
+
+                <h3 class="text-xl font-bold text-brand-dark dark:text-white mt-8 mb-4 flex items-center gap-2">
+                    <span class="text-brand-green">2.</span> احذر الهلوسة (Hallucination) ونافذة السياق
+                </h3>
+                <p>الذكاء الاصطناعي عامل زي "صاحبك اللي لسانه حلو"؛ مابيعرفش يقول "معرفش"، فممكن يألف إجابة تبان واثقة جداً (ودي الهلوسة). كمان البيانات بتاعته ممكن تكون قديمة، عشان كده لازم تشغل وضع البحث (Search Mode) لو بتسأل في معلومات حديثة.</p>
+                <p>في مصطلح تاني خطير اسمه <strong>نافذة السياق (Context Window)</strong>؛ لو المحادثة طالت منك جداً واستهلكت توكنز كتير، النموذج هيضطر ينسى "بداية المحادثة" عشان يستوعب الكلام الجديد، وساعتها هتحسه بقى "غبي" ومش فاهمك. الحل هنا هو استخدام "المساعدين الشخصيين" أو الـ Projects.</p>
+                
+                <h3 class="text-xl font-bold text-brand-dark dark:text-white mt-8 mb-4 flex items-center gap-2">
+                    <span class="text-brand-green">3.</span> الخلطة السرية لـ "الأمر الاحترافي"
+                </h3>
+                <p>السر مبقاش في طول الأمر، السر في "السياق". عشان تاخد إجابة زي ما قال الكتاب، أمرك لازم يغطي الـ 8 عناصر دي:</p>
+                <div class="bg-gray-50 dark:bg-[#070e0c] p-5 rounded-xl my-4 border border-gray-300 dark:border-brand-teal/50 border-r-4 border-r-brand-teal dark:border-r-brand-teal">
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-700 dark:text-gray-200">
+                        <li><i class="fa-solid fa-check text-brand-green ml-1"></i> <strong>الدور (Role):</strong> أنت خبير في كتابة المحتوى بخبرة 20 سنة.</li>
+                        <li><i class="fa-solid fa-check text-brand-green ml-1"></i> <strong>الهدف (Goal):</strong> عايزك تعلمني إزاي أكتب محتوى.</li>
+                        <li><i class="fa-solid fa-check text-brand-green ml-1"></i> <strong>المهمة (Task):</strong> اشرحلي الأساسيات خطوة بخطوة.</li>
+                        <li><i class="fa-solid fa-check text-brand-green ml-1"></i> <strong>السياق (Context):</strong> أنا مبتدئ وعايز أشتغل فريلانس.</li>
+                        <li><i class="fa-solid fa-check text-brand-green ml-1"></i> <strong>النبرة (Tone):</strong> عامية مصرية، أسلوب عملي ومش نظري.</li>
+                        <li><i class="fa-solid fa-check text-brand-green ml-1"></i> <strong>التنسيق (Format):</strong> استخدم جداول ونقاط.</li>
+                        <li><i class="fa-solid fa-check text-brand-green ml-1"></i> <strong>القيود (Negative):</strong> متستخدمش مصطلحات معقدة.</li>
+                        <li><i class="fa-solid fa-check text-brand-green ml-1"></i> <strong>المرجع (Reference):</strong> اديني أمثلة بأسلوب شرح أنا بفضله.</li>
+                    </ul>
+                </div>
+
+                <h3 class="text-xl font-bold text-brand-dark dark:text-white mt-8 mb-4 flex items-center gap-2">
+                    <span class="text-brand-green">4.</span> شجرة عيلة الذكاء الاصطناعي (مخ، وعضلات، وأتمتة)
+                </h3>
+                <ul class="space-y-2">
+                    <li><strong>النماذج اللغوية (LLMs):</strong> زي ChatGPT و Gemini. دول "المخ" اللي بتسأله ويرد عليك، لكنه مستنيك تديله الأمر.</li>
+                    <li><strong>الوكلاء الأذكياء (AI Agents):</strong> ده "مخ + عضلات". بتديله مهمة وينزل ينفذها. مثلاً تقوله "احجزلي تذكرة طيران"، هيدخل يدور ويقارن ويحل المشاكل بنفسه.</li>
+                    <li><strong>الأتمتة (Automation):</strong> زي (Zapier أو Make). ده مسار ثابت بيشتغل لما يحصل (Trigger) معين. عيبه إنه لو حصل عطل في خطوة، المسار كله بيقف.</li>
+                </ul>
+
+                <h3 class="text-xl font-bold text-brand-dark dark:text-white mt-8 mb-4 flex items-center gap-2">
+                    <span class="text-brand-green">5.</span> تفاصيل وأسرار واجهة الاستخدام (UI Deep Dive)
+                </h3>
+                <div class="grid md:grid-cols-2 gap-6 mt-4">
+                    <!-- ChatGPT -->
+                    <div class="bg-white dark:bg-[#070e0c] border border-gray-300 dark:border-brand-teal/60 rounded-xl p-5 relative overflow-hidden shadow-sm">
+                        <div class="absolute top-0 right-0 w-2 h-full bg-brand-green"></div>
+                        <h4 class="font-bold flex items-center gap-2 mb-3 dark:text-white"><i class="fa-solid fa-robot text-brand-green"></i> في ChatGPT</h4>
+                        <ul class="text-sm space-y-2 text-gray-700 dark:text-gray-200">
+                            <li>• <strong>الدردشة المؤقتة:</strong> مش بتتحفظ في الهيستوري (للخصوصية).</li>
+                            <li>• <strong>الدردشة الجماعية:</strong> تعمل جروب وتعمل Mention (@) لـ ChatGPT فيه!</li>
+                            <li>• <strong>ربط التطبيقات:</strong> تربطه بـ Canva وتصمم صورة وتتفتحلك جاهزة هناك.</li>
+                            <li>• <strong>المشاريع (Projects):</strong> فولدرات بتجمع فيها ملفاتك وتديها تعليمات ثابتة.</li>
+                        </ul>
+                    </div>
+                    <!-- Gemini -->
+                    <div class="bg-white dark:bg-[#070e0c] border border-gray-300 dark:border-brand-teal/60 rounded-xl p-5 relative overflow-hidden shadow-sm">
+                        <div class="absolute top-0 right-0 w-2 h-full bg-brand-teal"></div>
+                        <h4 class="font-bold flex items-center gap-2 mb-3 dark:text-white"><i class="fa-brands fa-google text-brand-teal"></i> في Gemini</h4>
+                        <ul class="text-sm space-y-2 text-gray-700 dark:text-gray-200">
+                            <li>• <strong>مساحة العمل (Canvas):</strong> بيقسم الشاشة نصين؛ شات ومحرر للتعديل أو الكود.</li>
+                            <li>• <strong>التعلم الموجه:</strong> بيمشي معاك خطوة بخطوة كأنه مدرس.</li>
+                            <li>• <strong>الخصوصية:</strong> اقفل "Improve the model for everyone" من الإعدادات.</li>
+                            <li>• <strong>الذاكرة (Saved Memory):</strong> تديله أوامر ثابتة يتذكرها دايماً في كل محادثة.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-brand-teal/10 dark:bg-brand-teal/20 rounded-xl p-5 mt-8 border border-brand-teal/30">
+                    <h4 class="font-bold text-brand-dark dark:text-white mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-lightbulb text-brand-teal dark:text-brand-green"></i> أمثلة لايف من المحاضرة:
+                    </h4>
+                    <ul class="text-sm space-y-2 text-gray-700 dark:text-gray-200 list-disc list-inside">
+                        <li><strong>متصفح Comet:</strong> فتحنا منتج على أمازون وطلبنا من المساعد يبحث عن كوبون خصم ويجربه بنفسه.</li>
+                        <li><strong>تكامل Gemini:</strong> طلبنا منه يضيف ميعاد الدبلومة في نتيجة جوجل لمدة شهرين وعملها فوراً.</li>
+                        <li><strong>ربط Canva بـ ChatGPT:</strong> عملنا منشن وطلبنا تصميم إعلان بألوان اللوجو.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. التطبيق العملي (Action & Prompts) -->
+        <section id="action-zone" class="scroll-mt-24 bg-white dark:bg-brand-darkcard border-2 border-gray-200 dark:border-brand-teal/60 rounded-3xl p-6 md:p-8 shadow-md">
+            <div class="flex items-center gap-3 mb-6">
+                <div class="p-3 bg-brand-green/10 dark:bg-brand-green/20 text-brand-green rounded-lg border border-brand-green/30">
+                    <i class="fa-solid fa-bolt text-xl"></i>
+                </div>
+                <h2 class="text-2xl font-bold border-b-2 border-brand-teal pb-2 inline-block dark:text-white">التطبيق العملي والأوامر الجاهزة</h2>
+            </div>
+            
+            <p class="mb-6 text-gray-600 dark:text-gray-200">إزاي تصيغ "أمر احترافي" يجيبلك الخلاصة بدون ما تكتبه بنفسك من الصفر؟ استخدم Prompt Mood والأمر الأساسي لتطبيق ما تعلمناه.</p>
+
+            <div class="grid gap-6">
+                <!-- Prompt Card 1 -->
+                <div class="bg-gray-50 dark:bg-[#070e0c] border border-gray-300 dark:border-brand-teal/60 rounded-2xl p-5 shadow-sm hover:shadow-md transition">
+                    <div class="flex justify-between items-center mb-3 border-b border-gray-300 dark:border-brand-teal/40 pb-3">
+                        <h3 class="font-bold text-lg text-brand-teal dark:text-brand-green"><i class="fa-solid fa-bullseye ml-2"></i> أمر التعلم الشامل (8 عناصر)</h3>
+                        <button onclick="copyPrompt(this, 'prompt1')" class="text-sm bg-brand-teal/10 hover:bg-brand-teal/20 dark:bg-brand-teal/20 dark:hover:bg-brand-teal/40 text-brand-teal dark:text-brand-green px-3 py-1.5 rounded-lg font-semibold transition flex items-center gap-2 border border-brand-teal/30">
+                            <i class="fa-regular fa-copy"></i> نسخ الأمر
+                        </button>
+                    </div>
+                    <div class="bg-white dark:bg-[#0a1412] border border-gray-200 dark:border-brand-teal/40 rounded-xl p-4 text-sm font-mono text-gray-800 dark:text-gray-100 leading-relaxed overflow-x-auto" dir="rtl">
+<pre id="prompt1" class="whitespace-pre-wrap font-sans">تخيل أنك [خبير تسويق رقمي بخبرة 20 سنة]. هدفي هو [تعلم كيفية كتابة محتوى جذاب].
+مهمتك هي [شرح أساسيات كتابة المحتوى لي خطوة بخطوة].
+السياق: [أريد العمل كفريلانسر في السوق المصري على السوشيال ميديا].
+النبرة: [استخدم لغة عامية مصرية بسيطة ومحفزة، أسلوب عملي وليس نظري].
+التنسيق: [قدم الإجابة في شكل نقاط واضحة وجداول للمقارنة إن لزم الأمر].
+القيود: [تجنب استخدام المصطلحات الإنجليزية المعقدة دون شرحها].
+المرجع: [ادعمني بأمثلة حقيقية لعلامات تجارية وبأسلوب شرح مبسط].</pre>
+                    </div>
+                </div>
+
+                <!-- Tips Cards Container -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Secret Tip Card -->
+                    <div class="bg-gradient-to-r from-brand-teal/10 to-brand-green/10 dark:from-brand-teal/20 dark:to-brand-green/20 border border-brand-green/40 rounded-2xl p-5 shadow-sm">
+                        <div class="flex items-center mb-3 pb-3 border-b border-brand-green/30">
+                            <h3 class="font-bold text-lg text-brand-dark dark:text-white"><i class="fa-solid fa-user-secret text-brand-green ml-2"></i> سر للناس السمارتر: Google Pro</h3>
+                        </div>
+                        <p class="text-sm text-gray-800 dark:text-gray-200 leading-relaxed">
+                            إزاي تاخد (Google Pro) اللي بـ 700 جنيه بـ 115 جنيه بس؟ ادخل على إعدادات (Google One) واعمل (Family Group) وضيف 5 من أصحابك أو زمايلك. اشتركوا في البرو وقسموا المبلغ عليكم، وكل واحد هيستفيد بالنسخة المدفوعة بخصوصية تامة!
+                        </p>
+                    </div>
+
+                    <!-- Usage Tip Card -->
+                    <div class="bg-gray-50 dark:bg-[#070e0c] border border-gray-300 dark:border-brand-teal/60 rounded-2xl p-5 shadow-sm hover:shadow-md transition">
+                        <div class="flex items-center mb-3 pb-3 border-b border-gray-300 dark:border-brand-teal/40">
+                            <h3 class="font-bold text-lg text-brand-dark dark:text-white"><i class="fa-solid fa-scale-balanced text-brand-teal ml-2"></i> اشترك ولا لأ؟</h3>
+                        </div>
+                        <p class="text-sm text-gray-800 dark:text-gray-200 leading-relaxed font-semibold">
+                            استخدامك هو اللي يحدد محتاج تشترك في النسخة المدفوعة لأي أداة ذكاء اصطناعي ولا لأ. لو النسخة المجانية مكفية احتياجك، مفيش داعي تدفع!
+                        </p>
+                    </div>
+
+                    <!-- ChatGPT Go Tip Card -->
+                    <div class="bg-gray-50 dark:bg-[#070e0c] border border-gray-300 dark:border-brand-teal/60 rounded-2xl p-5 shadow-sm hover:shadow-md transition">
+                        <div class="flex items-center mb-3 pb-3 border-b border-gray-300 dark:border-brand-teal/40">
+                            <h3 class="font-bold text-lg text-brand-dark dark:text-white"><i class="fa-solid fa-bolt text-[#10a37f] ml-2"></i> باقة شات جي بي تي</h3>
+                        </div>
+                        <p class="text-sm text-gray-800 dark:text-gray-200 leading-relaxed">
+                            لو هتشترك في شات جي بي تي، بنرشحلك باقة <span class="font-bold text-[#10a37f]">Go</span>، كافية جداً ورخيصة (حوالي 220 جنيه).
+                        </p>
+                    </div>
+
+                    <!-- Free Trial Tip Card -->
+                    <div class="bg-gray-50 dark:bg-[#070e0c] border border-gray-300 dark:border-brand-teal/60 rounded-2xl p-5 shadow-sm hover:shadow-md transition">
+                        <div class="flex items-center mb-3 pb-3 border-b border-gray-300 dark:border-brand-teal/40">
+                            <h3 class="font-bold text-lg text-brand-dark dark:text-white"><i class="fa-solid fa-gift text-purple-500 ml-2"></i> ملحوظة: جرب ببلاش!</h3>
+                        </div>
+                        <p class="text-sm text-gray-800 dark:text-gray-200 leading-relaxed">
+                            جرب تبص علي الاشتراكات علي جيمناي أو شات جي بي تي، لو مشتركتش في النسخة المدفوعة قبل كده، في الغالب هتلاقي في عرض تجرب شهر ببلاش Google Pro أو ChatGPT Plus.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. صندوق الأدوات والمساعدين (Tools & AI Agents) -->
+        <section id="tools-zone" class="scroll-mt-24 bg-white dark:bg-brand-darkcard border-2 border-gray-200 dark:border-brand-teal/60 rounded-3xl p-6 md:p-8 shadow-md relative overflow-hidden">
+            <div class="relative z-10">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="p-3 bg-brand-teal/10 dark:bg-brand-teal/20 text-brand-teal dark:text-brand-green rounded-lg border border-brand-teal/30">
+                        <i class="fa-solid fa-toolbox text-xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold border-b-2 border-brand-teal pb-2 inline-block dark:text-white">صندوق الأدوات والمساعدين</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                    <!-- المساعد الخاص بالدبلومة ونوت بوك -->
+                    <div class="bg-gray-50 dark:bg-[#070e0c] rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition border border-gray-300 dark:border-brand-teal/60 flex flex-col justify-between group">
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 text-brand-teal dark:text-brand-green"><i class="fa-solid fa-user-astronaut"></i> مساعد ونوت بوك الدبلومة</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-5">أدواتك المخصصة للمنهج، للبحث السريع والإجابة على كل أسئلتك خطوة بخطوة.</p>
+                        </div>
+                        <div class="flex flex-col gap-3 items-center justify-center">
+                            <a href="https://gemini.google.com/gem/1iO5UkN9OqLiCY1TaRgP01ZN0qRbV4n0C?usp=sharing" target="_blank" class="w-full max-w-xs bg-brand-teal text-white font-bold px-6 py-2.5 rounded-full hover:bg-brand-dark transition shadow-sm flex items-center justify-center gap-2">
+                                <i class="fa-brands fa-google"></i> فتح المساعد (Gemini)
+                            </a>
+                            <a href="https://notebooklm.google.com/notebook/7b7f75b1-77f6-4363-ada6-84c730d6bfc7" target="_blank" class="w-full max-w-xs bg-purple-600 text-white font-bold px-6 py-2.5 rounded-full hover:bg-purple-800 transition shadow-sm flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-book-open-reader"></i> نوت بوك الدبلومة
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Prompt Mood -->
+                    <div class="bg-gray-50 dark:bg-[#070e0c] rounded-2xl p-6 text-center shadow-sm hover:shadow-md transition border border-gray-300 dark:border-brand-teal/60 flex flex-col justify-between group">
+                        <div>
+                            <h3 class="text-xl font-bold mb-2 text-brand-teal dark:text-brand-green"><i class="fa-solid fa-wand-magic-sparkles"></i> مساعد الأوامر: Prompt Mood</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-5">هيطلب منك فكرتك بالعامية، ويسألك كام سؤال ويديك الأمر الاحترافي الجاهز تاخده "كوبي" فوراً!</p>
+                        </div>
+                        <div class="flex flex-wrap justify-center gap-3 mt-auto">
+                            <a href="https://chatgpt.com/g/g-690a5dc396108191adbb275002d417ed-prompt-mood" target="_blank" class="bg-[#10a37f] text-white font-bold px-5 py-2.5 rounded-full hover:bg-[#0e906f] transition shadow-sm flex items-center gap-2 text-sm">
+                                <i class="fa-solid fa-robot"></i> نسخة ChatGPT
+                            </a>
+                            <a href="https://gemini.google.com/gem/12D63r-FZr6mZ3pJvbnoWhQem1oX4jRYc?usp=sharing" target="_blank" class="bg-[#4285f4] text-white font-bold px-5 py-2.5 rounded-full hover:bg-[#3367d6] transition shadow-sm flex items-center gap-2 text-sm">
+                                <i class="fa-brands fa-google"></i> نسخة Gemini
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <h4 class="font-semibold mb-4 border-b border-brand-teal/30 dark:border-brand-teal/50 pb-2 inline-block text-brand-dark dark:text-white">المنصات الأساسية:</h4>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+                    <a href="https://chatgpt.com" target="_blank" class="bg-gray-50 dark:bg-[#070e0c] border border-gray-200 dark:border-brand-teal/40 hover:border-brand-teal dark:hover:border-brand-green hover:shadow-md rounded-xl p-4 text-center transition flex flex-col items-center gap-2 group">
+                        <i class="fa-solid fa-robot text-2xl text-[#10a37f] group-hover:scale-110 transition-transform"></i>
+                        <span class="font-semibold text-sm text-brand-dark dark:text-gray-200">ChatGPT</span>
+                    </a>
+                    <a href="https://gemini.google.com" target="_blank" class="bg-gray-50 dark:bg-[#070e0c] border border-gray-200 dark:border-brand-teal/40 hover:border-brand-teal dark:hover:border-brand-green hover:shadow-md rounded-xl p-4 text-center transition flex flex-col items-center gap-2 group">
+                        <i class="fa-brands fa-google text-2xl text-[#4285f4] group-hover:scale-110 transition-transform"></i>
+                        <span class="font-semibold text-sm text-brand-dark dark:text-gray-200">Gemini</span>
+                    </a>
+                    <a href="https://claude.ai" target="_blank" class="bg-gray-50 dark:bg-[#070e0c] border border-gray-200 dark:border-brand-teal/40 hover:border-brand-teal dark:hover:border-brand-green hover:shadow-md rounded-xl p-4 text-center transition flex flex-col items-center gap-2 group">
+                        <i class="fa-solid fa-brain text-2xl text-[#d97757] group-hover:scale-110 transition-transform"></i>
+                        <span class="font-semibold text-sm text-brand-dark dark:text-gray-200">Claude</span>
+                    </a>
+                    <a href="https://copilot.microsoft.com" target="_blank" class="bg-gray-50 dark:bg-[#070e0c] border border-gray-200 dark:border-brand-teal/40 hover:border-brand-teal dark:hover:border-brand-green hover:shadow-md rounded-xl p-4 text-center transition flex flex-col items-center gap-2 group">
+                        <i class="fa-brands fa-microsoft text-2xl text-[#00a4ef] group-hover:scale-110 transition-transform"></i>
+                        <span class="font-semibold text-sm text-brand-dark dark:text-gray-200">Copilot</span>
+                    </a>
+                    <a href="https://www.canva.com" target="_blank" class="bg-gray-50 dark:bg-[#070e0c] border border-gray-200 dark:border-brand-teal/40 hover:border-brand-teal dark:hover:border-brand-green hover:shadow-md rounded-xl p-4 text-center transition flex flex-col items-center gap-2 group">
+                        <i class="fa-solid fa-palette text-2xl text-[#00c4cc] group-hover:scale-110 transition-transform"></i>
+                        <span class="font-semibold text-sm text-brand-dark dark:text-gray-200">Canva</span>
+                    </a>
+                </div>
+
+                <h4 class="font-semibold mb-4 border-b border-brand-teal/30 dark:border-brand-teal/50 pb-2 inline-block text-brand-dark dark:text-white">أدوات إضافية تم ذكرها:</h4>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+                    <a href="https://www.perplexity.ai" target="_blank" class="bg-gray-50 dark:bg-[#070e0c] border border-gray-200 dark:border-brand-teal/40 hover:border-brand-teal dark:hover:border-brand-green hover:shadow-md rounded-xl p-4 text-center transition flex flex-col items-center gap-2 group">
+                        <i class="fa-solid fa-globe text-2xl text-[#22b8cd] group-hover:scale-110 transition-transform"></i>
+                        <span class="font-semibold text-sm text-brand-dark dark:text-gray-200">Comet / Perplexity</span>
+                    </a>
+                    <a href="https://chatgpt.com" target="_blank" class="bg-gray-50 dark:bg-[#070e0c] border border-gray-200 dark:border-brand-teal/40 hover:border-brand-teal dark:hover:border-brand-green hover:shadow-md rounded-xl p-4 text-center transition flex flex-col items-center gap-2 group">
+                        <i class="fa-solid fa-user-pen text-2xl text-orange-500 group-hover:scale-110 transition-transform"></i>
+                        <span class="font-semibold text-sm text-brand-dark dark:text-gray-200">AI Humanizer</span>
+                    </a>
+                    <a href="https://chatgpt.com" target="_blank" class="bg-gray-50 dark:bg-[#070e0c] border border-gray-200 dark:border-brand-teal/40 hover:border-brand-teal dark:hover:border-brand-green hover:shadow-md rounded-xl p-4 text-center transition flex flex-col items-center gap-2 group">
+                        <i class="fa-solid fa-graduation-cap text-2xl text-purple-500 group-hover:scale-110 transition-transform"></i>
+                        <span class="font-semibold text-sm text-brand-dark dark:text-gray-200">ScholarGPT</span>
+                    </a>
+                    <a href="https://zapier.com" target="_blank" class="bg-gray-50 dark:bg-[#070e0c] border border-gray-200 dark:border-brand-teal/40 hover:border-brand-teal dark:hover:border-brand-green hover:shadow-md rounded-xl p-4 text-center transition flex flex-col items-center gap-2 group">
+                        <i class="fa-solid fa-gears text-2xl text-gray-600 dark:text-gray-400 group-hover:scale-110 transition-transform"></i>
+                        <span class="font-semibold text-sm text-brand-dark dark:text-gray-200">Make & Zapier</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 4. الروابط والمجتمع (Community & Tasks) -->
+    <footer class="bg-white dark:bg-[#050a09] border-t-2 border-gray-200 dark:border-brand-teal/50 mt-12 py-12 shadow-inner">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            <!-- 1. التاسكات -->
+            <div class="flex flex-col h-full">
+                <h4 class="font-bold text-brand-dark dark:text-brand-green mb-4 text-lg border-r-4 border-brand-green pr-2 text-right shrink-0">التاسكات 🎯</h4>
+                <div class="bg-gray-50 dark:bg-brand-darkcard rounded-xl p-5 border border-gray-300 dark:border-brand-teal/50 flex-1 text-right flex flex-col justify-between">
+                    <div class="mb-4">
+                        <ul class="space-y-2 text-sm text-gray-700 dark:text-gray-200 list-disc list-inside">
+                            <li><strong>التاسك الأساسي:</strong> ادخل على ChatGPT أو Gemini، واستخدم مساعد "Prompt Mood" عشان تصيغ أمر احترافي في مجالك. اضغط (Share Conversation) وشاركنا الرابط في تاب التاسكات.</li>
+                            <li><strong>التحدي:</strong> ماتكتفيش بالرد الأول! كمل نقاش مع الذكاء الاصطناعي وعدل عليه لحد ما تطلع بمنتج احترافي (الفرصة لربح Google Pro!).</li>
+                        </ul>
+                    </div>
+
+                    <div class="border-t border-gray-200 dark:border-brand-teal/30 pt-4 mt-auto">
+                        <p class="text-xs text-brand-teal dark:text-brand-green font-semibold leading-relaxed">
+                            <i class="fa-regular fa-clock ml-1"></i> الديدلاين: 18 أبريل 2026، بس حتى لو أخرت بنحب نشوف محاولاتك عشان تكون Smarter With AI 💚
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. أدوات وروابط هامة -->
+            <div class="flex flex-col h-full">
+                <h4 class="font-bold text-brand-dark dark:text-brand-green mb-4 text-lg border-r-4 border-brand-teal pr-2 text-right shrink-0">أدوات وروابط 🔗</h4>
+                <div class="bg-gray-50 dark:bg-brand-darkcard rounded-xl p-5 border border-gray-300 dark:border-brand-teal/50 flex-1 text-right flex flex-col justify-center">
+                    <div class="space-y-6">
+                        <div>
+                            <h5 class="text-xs font-bold text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wider">أدوات الدبلومة</h5>
+                            <ul class="space-y-3">
+                                <li>
+                                    <a href="https://notebooklm.google.com/notebook/7b7f75b1-77f6-4363-ada6-84c730d6bfc7" target="_blank" class="flex items-center justify-start gap-2 text-sm text-brand-teal hover:text-brand-green dark:text-gray-300 dark:hover:text-brand-green transition font-semibold w-full">
+                                        <i class="fa-solid fa-book-open-reader text-lg w-5 text-center text-brand-teal dark:text-brand-green shrink-0"></i> 
+                                        <span class="flex-1 text-right">نوت بوك الدبلومة</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://gemini.google.com/gem/1iO5UkN9OqLiCY1TaRgP01ZN0qRbV4n0C?usp=sharing" target="_blank" class="flex items-center justify-start gap-2 text-sm text-brand-teal hover:text-brand-green dark:text-gray-300 dark:hover:text-brand-green transition font-semibold w-full">
+                                        <i class="fa-solid fa-user-astronaut text-lg w-5 text-center text-brand-teal dark:text-brand-green shrink-0"></i> 
+                                        <span class="flex-1 text-right">المساعد الشخصي للدبلومة</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h5 class="text-xs font-bold text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wider">روابط هامة</h5>
+                            <ul class="space-y-3">
+                                <li>
+                                    <a href="https://t.me/c/3331953900/4" target="_blank" class="flex items-center justify-start gap-2 text-sm text-brand-teal hover:text-brand-green dark:text-gray-300 dark:hover:text-brand-green transition font-semibold w-full">
+                                        <i class="fa-brands fa-telegram text-lg w-5 text-center text-brand-teal dark:text-brand-green shrink-0"></i> 
+                                        <span class="flex-1 text-right">قناة التاسكات</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://mahmoudtaru.github.io/Smarter-With-Ai-Round-4/" target="_blank" class="flex items-center justify-start gap-2 text-sm text-brand-teal hover:text-brand-green dark:text-gray-300 dark:hover:text-brand-green transition font-semibold w-full">
+                                        <i class="fa-solid fa-laptop-code text-lg w-5 text-center text-brand-teal dark:text-brand-green shrink-0"></i> 
+                                        <span class="flex-1 text-right">تطبيق الدبلومة الأساسي</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://mahmoudtaru.github.io/Smarter-Gifts/" target="_blank" class="flex items-center justify-start gap-2 text-sm text-brand-teal hover:text-brand-green dark:text-gray-300 dark:hover:text-brand-green transition font-semibold w-full">
+                                        <i class="fa-solid fa-gift text-lg w-5 text-center text-brand-teal dark:text-brand-green shrink-0"></i> 
+                                        <span class="flex-1 text-right">موقع المساعدين الشخصيين</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. الدعم والأسئلة -->
+            <div class="flex flex-col h-full">
+                <h4 class="font-bold text-brand-dark dark:text-brand-green mb-4 text-lg border-r-4 border-brand-teal pr-2 text-right shrink-0">الدعم والأسئلة 🤝</h4>
+                <div class="bg-gray-50 dark:bg-brand-darkcard rounded-xl p-5 border border-gray-300 dark:border-brand-teal/50 flex-1 text-right flex flex-col justify-center">
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="https://chat.whatsapp.com/C68FsQh5eYM7দ্দaKAXCk9vQ" target="_blank" class="flex items-center justify-start gap-3 p-3 rounded-xl bg-brand-green/10 dark:bg-[#081311] text-brand-green hover:bg-brand-green/20 transition border border-brand-green/20 dark:border-brand-teal/30 w-full">
+                                <i class="fa-brands fa-whatsapp text-2xl shrink-0"></i>
+                                <div class="flex-1 text-right">
+                                    <div class="font-bold text-sm dark:text-gray-200">جروب الواتساب</div>
+                                    <div class="text-xs text-brand-teal/80 dark:text-gray-400">المخصص للدفعة والإعلانات المهمة</div>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://t.me/c/3331953900/1" target="_blank" class="flex items-center justify-start gap-3 p-3 rounded-xl bg-brand-teal/10 dark:bg-[#081311] text-brand-teal hover:bg-brand-teal/20 transition border border-brand-teal/20 dark:border-brand-teal/30 w-full">
+                                <i class="fa-brands fa-telegram text-2xl dark:text-brand-green shrink-0"></i>
+                                <div class="flex-1 text-right">
+                                    <div class="font-bold text-sm dark:text-gray-200">جروب التليجرام</div>
+                                    <div class="text-xs text-brand-teal/80 dark:text-gray-400">خاص بالأسئلة والمناقشات بين الطلاب</div>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 4. العلامة التجارية -->
+            <div class="flex flex-col items-center justify-center text-center h-full">
+                <img src="https://i.postimg.cc/j512mZ0r/lwjw-image-hosting.jpg" alt="Smarter With AI Logo" class="w-20 h-20 rounded-2xl object-contain shadow-md mb-4 bg-white border-2 border-brand-teal/30 dark:border-brand-teal">
+                <div class="font-extrabold text-2xl text-brand-dark dark:text-white">Smarter With <span class="text-brand-green">AI</span></div>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">نصنع الفارق بالذكاء الاصطناعي</p>
+            </div>
+        </div>
+        
+        <div class="text-center text-sm text-gray-400 dark:text-gray-500 mt-12 border-t border-gray-200 dark:border-brand-teal/30 pt-6 pb-24 md:pb-6">
+            جميع الحقوق محفوظة &copy; 2026 لـ Smarter With AI
+        </div>
+    </footer>
+
+    <!-- شريط المشغل الصوتي العائم المتنقل -->
+    <div id="floating-audio-player" class="fixed bottom-4 left-1/2 transform -translate-x-1/2 w-[95%] max-w-2xl audio-player-glass border-2 border-brand-teal/50 dark:border-brand-green/60 rounded-full shadow-2xl p-3 z-50 transition-all duration-300">
+        <!-- Audio Element -->
+        <audio id="lecture-audio" src="http://googleusercontent.com/file_content/0" preload="metadata"></audio>
+        
+        <div class="flex items-center gap-3 md:gap-4">
+            <!-- زر التشغيل والإيقاف -->
+            <button id="play-pause-btn" class="w-12 h-12 bg-gradient-to-tr from-brand-teal to-brand-green text-white rounded-full flex items-center justify-center shadow-md hover:scale-105 transition-transform shrink-0 outline-none">
+                <i id="play-icon" class="fa-solid fa-play ml-1 text-lg"></i>
+            </button>
+            
+            <div class="flex-1 flex flex-col justify-center">
+                <div class="flex justify-between items-center mb-1.5">
+                    <span class="font-bold text-sm md:text-base text-brand-dark dark:text-white truncate">الملخص الصوتي للمحاضرة</span>
+                    <!-- زر السرعة -->
+                    <button id="speed-btn" class="text-xs font-bold bg-gray-100 dark:bg-brand-darkcard text-brand-teal dark:text-brand-green px-2.5 py-1 rounded-md hover:bg-gray-200 dark:hover:bg-[#050D0B] border border-transparent dark:border-brand-teal/30 transition outline-none">
+                        1x
+                    </button>
+                </div>
+                
+                <!-- شريط التقدم التفاعلي (يقرأ من اليمين لليسار) -->
+                <div class="flex items-center gap-3">
+                    <span id="current-time" class="text-xs font-mono text-gray-500 dark:text-gray-300 w-10 text-center">00:00</span>
+                    
+                    <div id="progress-container" class="relative flex-1 h-2.5 bg-gray-200 dark:bg-[#030A09] rounded-full cursor-pointer overflow-hidden group border border-gray-300 dark:border-brand-teal/30">
+                        <!-- الشريط الملون للتقدم -->
+                        <div id="progress-bar" class="absolute top-0 right-0 h-full bg-brand-green w-0 rounded-full pointer-events-none transition-all duration-100 ease-linear"></div>
+                    </div>
+                    
+                    <span id="total-duration" class="text-xs font-mono text-gray-500 dark:text-gray-300 w-10 text-center">00:00</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- 1. Dark/Light Mode Toggle ---
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+                themeIcon.classList.replace('fa-sun', 'fa-moon');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+                themeIcon.classList.replace('fa-moon', 'fa-sun');
+            }
+        });
+
+        // --- 2. Copy Prompt Function ---
+        function copyPrompt(button, elementId) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            
+            const tempTextArea = document.createElement("textarea");
+            tempTextArea.value = textToCopy;
+            tempTextArea.style.position = "absolute";
+            tempTextArea.style.left = "-9999px";
+            document.body.appendChild(tempTextArea);
+            
+            tempTextArea.select();
+            
+            try {
+                document.execCommand("copy");
+                const originalHTML = button.innerHTML;
+                button.innerHTML = '<i class="fa-solid fa-check"></i> تم النسخ بنجاح';
+                button.classList.add('bg-brand-green', 'text-white');
+                button.classList.remove('bg-brand-teal/10', 'hover:bg-brand-teal/20', 'dark:bg-brand-teal/20', 'dark:hover:bg-brand-teal/30', 'text-brand-teal', 'dark:text-brand-green');
+                
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.classList.remove('bg-brand-green', 'text-white');
+                    button.classList.add('bg-brand-teal/10', 'hover:bg-brand-teal/20', 'dark:bg-brand-teal/20', 'dark:hover:bg-brand-teal/30', 'text-brand-teal', 'dark:text-brand-green');
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+                alert('عذراً، فشل النسخ التلقائي. يرجى النسخ يدوياً.');
+            } finally {
+                document.body.removeChild(tempTextArea);
+            }
+        }
+
+        // --- 3. Accordion Toggle ---
+        function toggleAccordion(id) {
+            const content = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // --- 4. Custom Audio Player Logic ---
+        const audio = document.getElementById('lecture-audio');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const playIcon = document.getElementById('play-icon');
+        const speedBtn = document.getElementById('speed-btn');
+        const progressBar = document.getElementById('progress-bar');
+        const progressContainer = document.getElementById('progress-container');
+        const currentTimeEl = document.getElementById('current-time');
+        const totalDurationEl = document.getElementById('total-duration');
+
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return "00:00";
+            const m = Math.floor(seconds / 60);
+            const s = Math.floor(seconds % 60);
+            return `${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+
+        audio.addEventListener('loadedmetadata', () => {
+            totalDurationEl.innerText = formatTime(audio.duration);
+        });
+        
+        if(audio.readyState >= 1) {
+             totalDurationEl.innerText = formatTime(audio.duration);
+        }
+
+        audio.addEventListener('timeupdate', () => {
+            currentTimeEl.innerText = formatTime(audio.currentTime);
+            const progressPercent = (audio.currentTime / audio.duration) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+        });
+
+        playPauseBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playIcon.classList.replace('fa-play', 'fa-pause');
+                playIcon.classList.remove('ml-1');
+            } else {
+                audio.pause();
+                playIcon.classList.replace('fa-pause', 'fa-play');
+                playIcon.classList.add('ml-1');
+            }
+        });
+
+        const speeds = [1, 1.25, 1.5, 2];
+        let currentSpeedIndex = 0;
+        speedBtn.addEventListener('click', () => {
+            currentSpeedIndex = (currentSpeedIndex + 1) % speeds.length;
+            const newSpeed = speeds[currentSpeedIndex];
+            audio.playbackRate = newSpeed;
+            speedBtn.innerText = `${newSpeed}x`;
+        });
+
+        progressContainer.addEventListener('click', (e) => {
+            const rect = progressContainer.getBoundingClientRect();
+            const clickPos = rect.right - e.clientX; 
+            const totalWidth = rect.width;
+            let percentage = clickPos / totalWidth;
+            percentage = Math.max(0, Math.min(1, percentage)); 
+            audio.currentTime = percentage * audio.duration;
+        });
+        
+        audio.addEventListener('ended', () => {
+            playIcon.classList.replace('fa-pause', 'fa-play');
+            playIcon.classList.add('ml-1');
+            progressBar.style.width = '0%';
+            audio.currentTime = 0;
+        });
+    </script>
+</body>
+</html>
